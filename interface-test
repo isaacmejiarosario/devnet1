@@ -3,3 +3,10 @@ interface ethernet 1/1
  no shutdown
 
 
+interface ethernet 1/1
+ ip address 2.2.2.2 255.255.255.0
+ no shutdown
+
+
+
+
