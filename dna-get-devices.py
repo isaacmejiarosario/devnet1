@@ -8,7 +8,7 @@ the list of devices from Cisco DNA Center using the REST API.
 
 import requests 
 from auth_token import get_token 
-
+import json
 
 def main():
     
@@ -25,17 +25,18 @@ def main():
     
     api_path = "https://sandboxdnac2.cisco.com"
     headers = {"Content-Type": "application/json", "X-Auth-Token": token}
-    
+    timeout = 0.1    
 
     # Issue HTTP GET request to get list of network devices
     get_resp = requests.get(
         f"{api_path}/api/v1/network-device", headers=headers
     )
 
-
-    # Debugging output to learn the JSON structure, then quit import json; print(json.dumps(get_resp.json(), indent=2)) Iterate over list of dictionaries and print device ID and management IP
+   # Debugging output to learn the JSON structure, then quit import json; print(json.dumps(get_resp.json(), indent=2)) Iterate over list of dictionaries and print device ID and management IP
+    print(json.dumps(get_resp.json(), indent=2))
     if get_resp.ok:
         for device in get_resp.json()["response"]:
+            
             print(f"ID: {device['id']} IP: {device['managementIpAddress']} HOSTNAME: {device['hostname']}")
     else:
         print(f"Device collection failed with code {get_resp.status_code}")

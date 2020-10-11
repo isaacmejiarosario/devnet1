@@ -1,0 +1,43 @@
+#!/usr/bin
+
+import time
+import paramiko
+
+
+def send_cmd(conn, command):
+    conn.send(command + "\n")
+    time.sleep(1.0)
+
+def get_output(conn):
+    return conn.recv(65535).decode("utf-8")
+    
+
+
+
+
+
+
+
+
+
+
+
+
+conn_params = paramiko.SSHClient()
+
+
+conn_params.connect(
+    hostname="172.20.100.1",
+    username="imejia",
+    password="rosario270984",
+    )
+
+conn = conn_params.ivoke_shell()
+
+conn.send("sh ip int brie/n")
+
+#we need to wait for response
+
+output = conn.recv(65535)
+
+
