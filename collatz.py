@@ -4,7 +4,7 @@ import time
 import sys
 
 
-
+###this funtion performs the matematical funtions of the programs
 def collatz(number):
 
     if number % 2 == 0:            
